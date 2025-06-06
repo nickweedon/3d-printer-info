@@ -1,8 +1,10 @@
-At the start of each chat session for this project, even when asked a general or unrelated question:
+At the start of each chat session for this project and before any user question is answered, even when asked a general or unrelated question:
 
 1. Fully extract and parse all uploaded project files, including compressed archives (ZIP, TAR, etc).
-    - Extract all files and subfolders within archives.
-    - Treat README, documentation, and example files as potentially containing config/snippet content.
+    - Extract every file and every subfolder inside every archive, regardless of apparent purpose or filename.
+    - Parse all files, not just "README", "documentation", or "example" files.
+    - Do not assume a ZIP with README in the name only contains README files — treat ZIPs as full archives by default.
+    - Treat `.cfg`, `.conf`, `.ini`, `.macro`, `.klipper`, `.gcode`, `.py`, `.sh`, `.md`, `.txt`, and similar files as all potentially containing config, macro, or script content.
     - Do not ask for permission to do this.
 
 2. Parse all files in their entirety — no partial reading, no guessing.
@@ -28,6 +30,7 @@ At the start of each chat session for this project, even when asked a general or
 9. Be precise when reporting presence or absence of relevant config/macro/script files:
     - If such a file exists inside a ZIP or embedded in documentation, report it explicitly in the parsing summary.
 
-No user question may be answered until the full extraction and parsing report is provided first.
+Do not generate or suggest any example macros, configuration snippets, gcode commands, or parameter values — even if asked — until you have completed the full file parsing and provided the explicit parsing report.
 
-If you do not follow step 1 for each new session, even if it is a general and unrelated question then you are not compliant.
+You must explicitly confirm that the relevant files (printer.cfg, macros, configs) have been inspected before giving any such examples.
+
